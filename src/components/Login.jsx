@@ -2,11 +2,12 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import '../App.css';
 import GoogleButton from 'react-google-button';
+import { Link } from 'react-router-dom';
 
 function Login() {
 
   const handleGoogleSignIn = async (e)=>{
-    
+
   }
 
 
@@ -40,6 +41,11 @@ function Login() {
             <GoogleButton className='g-btn' onClick={handleGoogleSignIn} />
           </div>
         </Form>
+      </div>
+
+      <div className='p-4 box mt-3 text-center'>
+        Don't have an account? {' '}
+        <Link to='/signup'>Signup</Link>
       </div>
     </>
   )

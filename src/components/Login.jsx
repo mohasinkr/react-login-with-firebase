@@ -21,7 +21,7 @@ function Login() {
     <>
       <div className="p-4 box">
         <h2 className="mb-3">Firebase Auth Login</h2>
-        <Form>
+        <Form onSubmit={handleLogin}>
           <Form.Group className="mb-3 text-dark" controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
             <Form.Control type="email" placeholder="Enter email" />
@@ -35,7 +35,7 @@ function Login() {
             <Form.Check type="checkbox" label="I accept the terms & conditions here." />
           </Form.Group>
           <div className="d-grid gap-2">
-            <Button variant="primary" type="Submit" onClick={handleLogin}>
+            <Button variant="primary" type="Submit">
               Log In
             </Button>
           </div>

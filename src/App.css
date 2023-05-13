@@ -11,6 +11,7 @@ body {
 .box {
   border: 1px solid #dfdfdf;
   background-color: #fff;
+  border-radius: 5px;
 }
 
 .g-btn {

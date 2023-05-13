@@ -3,11 +3,17 @@ import Form from 'react-bootstrap/Form';
 import '../App.css';
 import GoogleButton from 'react-google-button';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
+  const navigate = useNavigate();
 
   const handleGoogleSignIn = async (e)=>{
 
+  }
+
+  const handleLogin = ()=>{ 
+   navigate('/home');
   }
 
 
@@ -29,7 +35,7 @@ function Login() {
             <Form.Check type="checkbox" label="I accept the terms & conditions here." />
           </Form.Group>
           <div className="d-grid gap-2">
-            <Button variant="primary" type="Submit">
+            <Button variant="primary" type="Submit" onClick={handleLogin}>
               Log In
             </Button>
           </div>

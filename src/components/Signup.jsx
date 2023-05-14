@@ -9,16 +9,17 @@ import { Alert } from "react-bootstrap";
 function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [msg, setMsg] = useState("");
   const { signUp } = useUserAuth();
 
   const handleSignUp = async (e) => {
     e.preventDefault();
-    setError("");
+    setMsg("");
     try {
       await signUp(email, password);
+      setMsg("success");
     } catch (err) {
-      setError(err.message);
+      setMsg(err.message);
     }
   };
 
@@ -26,7 +27,11 @@ function Signup() {
     <>
       <div className="p-4 box">
         <h2 className="mb-3">Firebase Auth Signup</h2>
-        {error && <Alert variant="danger">{error}</Alert>}
+        {msg === "" ? null : msg === "success" ? (
+          <Alert variant="success">Success ✅</Alert>
+        ) : (
+          <Alert variant="danger">{msg}</Alert>
+        )}
         <Form onSubmit={handleSignUp}>
           <Form.Group className="mb-3 text-dark" controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>

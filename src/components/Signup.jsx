@@ -1,8 +1,8 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import "../App.css";
-import { Link } from "react-router-dom";
-import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { useUserAuth } from "../context/UserAuthContext";
 import { Alert } from "react-bootstrap";
 
@@ -11,6 +11,7 @@ function Signup() {
   const [password, setPassword] = useState("");
   const [msg, setMsg] = useState("");
   const { signUp } = useUserAuth();
+  const navigate = useNavigate();
 
   const handleSignUp = async (e) => {
     e.preventDefault();
@@ -18,6 +19,9 @@ function Signup() {
     try {
       await signUp(email, password);
       setMsg("success");
+      setTimeout(() => {
+        navigate('/');
+      }, 1000);
     } catch (err) {
       setMsg(err.message);
     }

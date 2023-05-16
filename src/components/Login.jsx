@@ -23,7 +23,6 @@ function Login() {
     e.preventDefault();
     try{
       const loginData = await login(email,password);
-      console.log(loginData)
       setMsg('success');
       setTimeout(()=>{
         navigate("/home");

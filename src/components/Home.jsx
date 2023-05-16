@@ -1,25 +1,30 @@
-import React from 'react'
-import { Button } from 'react-bootstrap'
-import { useNavigate } from 'react-router-dom'
+import React from "react";
+import { Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+
+import { useUserAuth } from "../context/UserAuthContext";
+import { auth } from "../firebase.js";
 
 function Home() {
-
   const navigate = useNavigate();
-  const handleClick = ()=>{
-    navigate('/');
-  }
+  const {logOut} = useUserAuth();
+
+  const handleLogOut = async (e) => {
+    await logOut(auth);
+    navigate("/");
+  };
 
   return (
-    <div className='p-4 box'>
+    <div className="p-4 box">
       <p>Hello Welcome</p>
-      <span className='email'></span>
+      <span className="email"></span>
       <div className="d-grid">
-        <Button variant='primary' onClick={handleClick}>
+        <Button variant="primary" onClick={handleLogOut}>
           Logout
         </Button>
       </div>
     </div>
-  )
+  );
 }
 
 export default Home;

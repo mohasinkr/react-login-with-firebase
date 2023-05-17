@@ -3,11 +3,11 @@ import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 import { useUserAuth } from "../context/UserAuthContext";
-import { auth } from "../firebase.js";
+import auth from "../firebase.js";
 
 function Home() {
   const navigate = useNavigate();
-  const {logOut} = useUserAuth();
+  const { user, logOut } = useUserAuth();
 
   const handleLogOut = async (e) => {
     await logOut(auth);
@@ -16,8 +16,8 @@ function Home() {
 
   return (
     <div className="p-4 box">
-      <p>Hello Welcome</p>
-      <span className="email"></span>
+      <p>Hello, Welcome</p>
+      <span className="email">{user.email}</span>
       <div className="d-grid">
         <Button variant="primary" onClick={handleLogOut}>
           Logout

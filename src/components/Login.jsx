@@ -10,14 +10,22 @@ import { Alert } from "react-bootstrap";
 
 function Login() {
   const navigate = useNavigate();
-  const { login } = useUserAuth();
+  const { login,GoogleSignIn} = useUserAuth();
 
   const [email,setEmail] = useState('');
   const [password,setPassword] = useState('');
   const [msg, setMsg] = useState("");
 
 
-  const handleGoogleSignIn = async (e) => {};
+  const handleGoogleSignIn = async (e) => {
+    e.preventDefault();
+    try{
+      await GoogleSignIn();
+    }
+    catch(err){
+      console.log(err.message);
+    }
+  };
 
   const handleLogin = async (e) => {
     e.preventDefault();

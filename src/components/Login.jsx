@@ -21,6 +21,10 @@ function Login() {
     e.preventDefault();
     try {
       await GoogleSignIn();
+      setMsg('success');
+      setTimeout(() => {
+        navigate("/home");
+      }, 1500);
     } catch (err) {
       console.log(err.message);
     }

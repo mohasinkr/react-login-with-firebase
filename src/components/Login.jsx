@@ -10,37 +10,37 @@ import { Alert } from "react-bootstrap";
 
 function Login() {
   const navigate = useNavigate();
-  const { login,GoogleSignIn} = useUserAuth();
+  const { login, GoogleSignIn } = useUserAuth();
 
-  const [email,setEmail] = useState('');
-  const [password,setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [checked, setChecked] = useState(false);
   const [msg, setMsg] = useState("");
-
 
   const handleGoogleSignIn = async (e) => {
     e.preventDefault();
-    try{
+    try {
       await GoogleSignIn();
-    }
-    catch(err){
+    } catch (err) {
       console.log(err.message);
     }
   };
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    try{
-      const loginData = await login(email,password);
-      setMsg('success');
-      setTimeout(()=>{
-        navigate("/home");
-      },1500)
-      
+    if (checked) {
+      try {
+        await login(email,password);
+        setMsg("success");
+        setTimeout(() => {
+          navigate("/home");
+        }, 1500);
+      } catch (err) {
+        setMsg(err.message);
+      }
+    } else {
+      setMsg("Please accept the terms & conditions!");
     }
-    catch(err){
-      setMsg(err.message);
-    }    
-    
   };
 
   return (
@@ -55,23 +55,33 @@ function Login() {
         <Form onSubmit={handleLogin}>
           <Form.Group className="mb-3 text-dark" controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" onChange={(e)=>{
-              setEmail(e.target.value);
-            }}/>
+            <Form.Control
+              type="email"
+              placeholder="Enter email"
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+            />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" onChange={
-              (e)=>{
+            <Form.Control
+              type="password"
+              placeholder="Password"
+              onChange={(e) => {
                 setPassword(e.target.value);
-              }
-            }/>
+              }}
+            />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicCheckbox">
             <Form.Check
               type="checkbox"
               label="I accept the terms & conditions here."
+              checked={checked}
+              onChange={(e) => {
+                checked ? setChecked(false) : setChecked(true);
+              }}
             />
           </Form.Group>
           <div className="d-grid gap-2">

@@ -1,0 +1,15 @@
+services:
+  frontend:
+    image: auth-frontend
+    volumes:
+      - .:/frontend/
+    ports:
+      - "5503:5173"
+    networks:
+      - auth-network
+
+networks:
+  auth-network:
+    name: auth-network
+    external: true
+    driver: bridge

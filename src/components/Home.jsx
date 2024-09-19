@@ -1,9 +1,8 @@
-import React from "react";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-import { useUserAuth } from "../context/UserAuthContext";
-import auth from "../firebase.js";
+import {useUserAuth} from "@/context/UserAuthContext";
+import auth from "@/firebase";
 
 function Home() {
   const navigate = useNavigate();
@@ -18,6 +17,7 @@ function Home() {
     <div className="p-4 box">
       <p>Hello, Welcome</p>
       <span className="email">{user.email}</span>
+      <p></p>
       <div className="d-grid">
         <Button variant="primary" onClick={handleLogOut}>
           Logout

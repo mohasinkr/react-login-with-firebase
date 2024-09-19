@@ -1,10 +1,9 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import "../App.css";
 import GoogleButton from "react-google-button";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { useUserAuth } from "../context/UserAuthContext";
+import { useUserAuth } from "../../context/UserAuthContext";
 import { useState } from "react";
 import { Alert } from "react-bootstrap";
 
@@ -21,7 +20,7 @@ function Login() {
     e.preventDefault();
     try {
       await GoogleSignIn();
-      setMsg('success');
+      setMsg("success");
       setTimeout(() => {
         navigate("/home");
       }, 1500);
@@ -34,7 +33,7 @@ function Login() {
     e.preventDefault();
     if (checked) {
       try {
-        await login(email,password);
+        await login(email, password);
         setMsg("success");
         setTimeout(() => {
           navigate("/home");
@@ -49,7 +48,7 @@ function Login() {
 
   return (
     <>
-      <div className="p-4 box">
+      <div className="p-5 box">
         <h2 className="mb-3">Firebase Auth Login</h2>
         {msg === "" ? null : msg === "success" ? (
           <Alert variant="success">Success ✅</Alert>
@@ -89,19 +88,19 @@ function Login() {
             />
           </Form.Group>
           <div className="d-grid gap-2">
-            <Button variant="primary" type="Submit">
+            <Button variant="primary" type="submit">
               Log In
             </Button>
           </div>
           <hr />
-          <div>
-            <GoogleButton className="g-btn" onClick={handleGoogleSignIn} />
-          </div>
+          <GoogleButton className="g-btn" onClick={handleGoogleSignIn} />
         </Form>
       </div>
 
       <div className="p-4 box mt-3 text-center">
-        Don't have an account? <Link to="/signup">Signup</Link>
+        Don&apos;t have an account? <Link to="/signup">Signup</Link>
+        <br />
+        <Link to="/custom-login">Login with custom backend</Link>
       </div>
     </>
   );

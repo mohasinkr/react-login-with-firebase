@@ -1,9 +1,8 @@
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import "../App.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useUserAuth } from "../context/UserAuthContext";
+import { useUserAuth } from "../../context/UserAuthContext";
 import { Alert } from "react-bootstrap";
 
 function Signup() {
@@ -20,7 +19,7 @@ function Signup() {
       await signUp(email, password);
       setMsg("success");
       setTimeout(() => {
-        navigate('/');
+        navigate("/");
       }, 1000);
     } catch (err) {
       setMsg(err.message);

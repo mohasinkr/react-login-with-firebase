@@ -1,7 +1,7 @@
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-import {useUserAuth} from "@/context/UserAuthContext";
+import { useUserAuth } from "@/context/UserAuthContext";
 import auth from "@/firebase";
 
 function Home() {

@@ -12,7 +12,7 @@ function Signup() {
   const { signUp } = useUserAuth();
   const navigate = useNavigate();
 
-  const handleSignUp = async (e) => {
+  const handleGoogleSignup = async (e) => {
     e.preventDefault();
     setMsg("");
     try {
@@ -21,6 +21,27 @@ function Signup() {
       setTimeout(() => {
         navigate("/");
       }, 1000);
+    } catch (err) {
+      setMsg(err.message);
+    }
+  };
+
+  const handleSignUp = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch("http://127.0.0.1:4500/api/v1/auth/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+          password_confirmation: password,
+        }),
+      });
+      const data = await response.json();
+      console.log(data);
     } catch (err) {
       setMsg(err.message);
     }
@@ -60,9 +81,7 @@ function Signup() {
             />
           </Form.Group>
           <div className="d-grid gap-2">
-            <Button variant="primary" type="Submit">
-              Sign Up
-            </Button>
+            <Button variant="primary" type="submit">Sign Up</Button>
           </div>
           <hr />
         </Form>
